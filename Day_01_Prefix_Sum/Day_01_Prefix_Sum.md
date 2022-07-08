@@ -42,6 +42,8 @@ int* runningSum(int* nums, int numsSize, int* returnSize){
         return dynArr;
     }
     ```
+
+---
 ## 724. Find Pivot Index
 
 ### 題目
