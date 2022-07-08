@@ -40,7 +40,7 @@ bool isIsomorphic(char * s, char * t){
         }
     }
     ```
-- 比較相同時忘記strcmp()函數，自己又寫了一個，注意本機測試時strcmp()需要#include <string.h>，使用bool型態需要#include <stdbool.h>
+- 要比較相同時忘記strcmp()函數，自己又寫了一個，注意本機測試時strcmp()需要#include <string.h>，使用bool型態需要#include <stdbool.h>
     ```c
     bool isIdentical(char* s, char* t) {
         int i = 0;
@@ -55,7 +55,7 @@ bool isIsomorphic(char * s, char * t){
     ```
 - 再來發現只要去檢查字元是否有被對應過，有重複對應就不合格
     - 對應的定義是paper和title之間，p對應t、a對應i、e對應l、r對應e，其中t不需要對應回p，只要2個元素不要到同一個元素即可，可以對應到自己
-    - 無法通過char s[] = "badc"、char t[] = "baba" 測試項目，需要對調s, t順序來確認對應
+    - 無法通過char s[ ] = "badc"、char t[ ] = "baba" 測試項目，需要對調s, t順序來確認對應
     ```c
     bool isIsomorphic(char * s, char * t){
         return !(isConflict(s, t) || isConflict(t, s));
@@ -96,7 +96,7 @@ bool isIsomorphic(char * s, char * t){
         return 0;
     }
     ```
-
+---
 ## 392. Is Subsequence
 
 ### 題目
@@ -116,6 +116,8 @@ bool isSubsequence(char * s, char * t){
 ### 過程
 - 查詢strchr()函數可以用來找出字元第一個出現的位置，需要#include <string.h>，回傳值是字元第一個出現位置的指標
     - https://cplusplus.com/reference/cstring/strchr/
+    - https://en.cppreference.com/w/cpp/string/byte/strchr
+    - 找不到時會回傳a null pointer
     ```c
     #include <string.h>
     char str[] = "This is a sample string";
@@ -136,7 +138,7 @@ bool isSubsequence(char * s, char * t){
         int max_index = 0;
         
         while (s[i] != '\0') {
-            if (strchr(t, s[i]) != NULL) {
+            if (strchr(t, s[i]) != NULL) {  // 找不到時會回傳a null pointer
                 found_index = (int)(strchr(t, s[i]) - t);
                 if (found_index >= max_index) {
                     t[found_index] = 'A';
