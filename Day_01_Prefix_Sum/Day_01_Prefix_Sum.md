@@ -16,16 +16,17 @@ int* runningSum(int* nums, int numsSize, int* returnSize){
 ```
 
 ### 過程
-- 一開始不熟悉題目預設函數的意義
+- 一開始不確定題目中預設函數的設定
     ```c
     int* runningSum(int* nums, int numsSize, int* returnSize)
     ```
 - return值是計算好後輸出的array
 - int* nums是輸入的array, numsSize是該array的大小
 - int* returnSize是要提供輸出array的大小
-- 要在函數中動態取得array記憶體再回傳array的位置
-- C透過指標傳入函數都要再提供array的大小，不然其實無法得知
+- 要在函數中動態建立array記憶體再回傳array的位置
+- C透過指標傳入函數都要再提供array的大小，不然其實無法得知array大小
     ```c
+    /* 最後上傳 */
     /**
     * Note: The returned array must be malloced, assume caller calls free().
     */
@@ -92,6 +93,7 @@ int pivotIndex(int* nums, int numsSize){
     ```
 - 後來發現既然一開始全部總和已經計算過了，接下來所有i的左邊總和及右邊總和，都和全部總合差異1個元素而已
     ```c
+    /* 最後上傳 */
     int pivotIndex(int* nums, int numsSize){
         int i;
         int sum_total = 0;
@@ -115,4 +117,4 @@ int pivotIndex(int* nums, int numsSize){
         return -1;
     }
     ```
-- 修改後計算時間從1583 ms左右降到31 ms左右
+    - 修改後計算時間從1583 ms左右降到31 ms左右
