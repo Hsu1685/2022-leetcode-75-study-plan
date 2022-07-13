@@ -1,4 +1,4 @@
-# Day 5 Greedy
+# Day 7 Binary Search
 
 ## 704. Binary Search
 
