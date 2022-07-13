@@ -74,39 +74,39 @@ struct ListNode *detectCycle(struct ListNode *head) {
 
 ### 過程
 - 一開始想到的方法是用[10000]的陣列來儲存所有走過的節點指標，出現有重複的指標就表示list存在有閉環
-```c
-struct ListNode *detectCycle(struct ListNode *head) {
-    struct ListNode *ptr_array[10000] = {0};
-    struct ListNode *ptr;
-    int index = 0;
-    int flag = 0;
-    
-    if (head == NULL) {
+    ```c
+    struct ListNode *detectCycle(struct ListNode *head) {
+        struct ListNode *ptr_array[10000] = {0};
+        struct ListNode *ptr;
+        int index = 0;
+        int flag = 0;
+        
+        if (head == NULL) {
+            return NULL;
+        }
+            
+        ptr = head;
+        
+        while (ptr->next != NULL) {
+            ptr_array[index] = ptr;
+            if (isInArray(ptr_array, ptr->next, index)) {
+                return  ptr->next;
+            }
+            index++;
+            ptr = ptr->next;
+        }
         return NULL;
     }
+
+    int isInArray(struct ListNode** array, struct ListNode *node, int num) {
+        int i;
         
-    ptr = head;
-    
-    while (ptr->next != NULL) {
-        ptr_array[index] = ptr;
-        if (isInArray(ptr_array, ptr->next, index)) {
-            return  ptr->next;
+        for (i=0; i<num; i++) {
+            if (array[i] == node) {
+                return 1;
+            }
         }
-        index++;
-        ptr = ptr->next;
+        return 0;
     }
-    return NULL;
-}
 
-int isInArray(struct ListNode** array, struct ListNode *node, int num) {
-    int i;
-    
-    for (i=0; i<num; i++) {
-        if (array[i] == node) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-```
+    ```
