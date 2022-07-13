@@ -32,7 +32,7 @@ int* runningSum(int* nums, int numsSize, int* returnSize){
     */
     int* runningSum(int* nums, int numsSize, int* returnSize){
         int sum = 0;    
-        int* dynArr = malloc(numsSize * sizeof(int));
+        int* dynArr = (int *)malloc(numsSize * sizeof(int));
         
         *dynArr = *nums;
         for (int i=1; i<numsSize; i++) {
