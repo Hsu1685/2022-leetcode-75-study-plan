@@ -297,7 +297,7 @@ int longestPalindrome(char * s){
 
     int run_preorder3(struct TreeNode *ptr, int *array, int **array2D) {
         int node_level = 0;
-        int node_total = 0;
+        // int node_total = 0;
         element *e;
 
         if (ptr == NULL) return 0;
@@ -313,7 +313,6 @@ int longestPalindrome(char * s){
 
             ptr = e->key;
             if (ptr != NULL) {
-                // append_to_array(ptr->val, e->level);
                 array2D[e->level][++array[e->level] - 1]= ptr->val;
 
                 if ((ptr->left) != NULL) {
@@ -330,39 +329,18 @@ int longestPalindrome(char * s){
         return node_level + 1;
     }
 
-    // void append_to_array(int val, int row) {
-    //     dynArr[row] += 1;
-    //     dynArr2D[row][dynArr[row] - 1] = val;
-    // }
-
     void addq(struct TreeNode* ptr, int lv) {
-        // element item = {ptr, lv};
-        // element item;
-        // item.key = ptr;
-        // item.level = lv;
-
         rear = (rear + 1) % MAX_QUEUE_SIZE;
-        // if (front == rear) {
-        //     queueFull();
-        // }
         queue[rear].key = ptr;
         queue[rear].level = lv;
     }
 
     element *deleteq(void) {
-        // if (front == rear) {
-        //     return queueEmpty();
-        // }
         front = (front + 1) % MAX_QUEUE_SIZE;
         return (queue + front);
     }
 
     int isEmpty(void) {
         return (front == rear);
-        // if (front == rear) {
-        //     return 1;
-        // } else {
-        //     return 0;
-        // }
     }
     ```
