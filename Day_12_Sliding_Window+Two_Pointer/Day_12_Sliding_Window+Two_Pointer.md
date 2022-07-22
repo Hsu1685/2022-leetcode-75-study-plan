@@ -90,3 +90,11 @@ int* findAnagrams(char * s, char * p, int* returnSize){
     return ptr;
 }
 ```
+### 題目延伸
+- [<cstring> (string.h)](https://cplusplus.com/reference/cstring/)
+- [Null-terminated byte strings](https://en.cppreference.com/w/cpp/string/byte)
+- 常用的C語言中字串應用函式:
+    - 字串比對: strcmp
+    - 字串複製: strcpy
+    - 字串連接: strcat
+    - 計算字串長度: strlen
