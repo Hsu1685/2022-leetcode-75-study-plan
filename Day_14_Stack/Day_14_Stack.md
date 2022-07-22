@@ -1,6 +1,6 @@
 # Day 14 Stack
 
-## 746. Min Cost Climbing Stairs
+## 844. Backspace String Compare
 
 ### 題目
 >Given two strings $s$ and $t$, return $true$ *if they are equal when both are typed into empty text editors*. $'#'$ means a backspace character.</br>
@@ -277,3 +277,115 @@ int isEmpty(int *top) {
 
 - 參考他人的作法後，發現應該放入stack的不是char，應該把 '[' 之前的數字解析為int後放入stack，把 '[' 和 ']' 中間的字串放入stack，為此stack要修改為一個stack是元素是int，一個stack元素是字元陣列
     - [[LeetCode] 394. Decode String 解码字符串](https://www.cnblogs.com/grandyang/p/5849037.html)
+```c
+#include <string.h>
+
+#define MAX_STACK_SIZE 200
+#define MAX_STRING_SIZE 5000
+
+typedef struct {
+    char str[MAX_STRING_SIZE];
+    int num;
+} element;
+
+void push(element, element *, int *);
+element pop(element *, int *);
+int isEmpty(int *);
+element peek(element *, int *);
+
+element stack1[MAX_STACK_SIZE];
+element stack2[MAX_STACK_SIZE];
+int top1;
+int top2;
+char *ptr;
+char str_temp[MAX_STRING_SIZE];
+
+char * decodeString(char * s){
+    int i, repeat, number;
+    char str_strcat[100];
+    char char_temp[4];
+    element input;
+
+    top1 = -1;
+    top2 = -1;
+    repeat = 0;
+    strcpy(str_temp, "");
+    strcpy(str_strcat, "");
+    strcpy(char_temp, "");
+
+    i = 0;
+    while (s[i] != '\0') {
+        /* 1-9 */
+        if ((s[i] >= '0') && (s[i] <= '9')) {
+            repeat = (10 * repeat) + (s[i] - '0');
+        /* '[' */
+        /* 數字結束了，要準備收字串 */
+        } else if (s[i] == '[') {
+            /* 当前 cnt 压入数字栈中 */
+            input.num = repeat;
+            push(input, stack2, &top2);  // stack2[i]放數字
+            repeat = 0;
+
+            /* 当前t压入字符串栈中 */
+            strcpy(input.str, "");
+            strcpy(input.str, str_temp);
+            push(input, stack1, &top1);  // stack1[i]放字串
+            strcpy(str_temp, "");
+        /* a-z */
+        } else if ((s[i] >= 'a') && (s[i] <= 'z')) {
+            strcpy(char_temp, "");
+            char_temp[0] = s[i];
+            char_temp[1] = '\0';
+            strcat(str_temp, char_temp);
+        // ']'
+        } else {
+            /* 取出数字栈中顶元素，存入变量k */
+            number = pop(stack2, &top2).num;
+
+            /* 给字符串栈的顶元素循环加上k个t字符串 */
+            // strcpy(str_strcat, "");
+            // strcpy(str_strcat, str_temp);
+            for (int j=0; j<(number); j++) {
+                strcat(stack1[top1].str, str_temp);
+            }
+            /* 然后取出顶元素存入字符串t中 */
+            strcpy(str_temp, "");
+            strcpy(str_temp, stack1[top1].str);
+            pop(stack1, &top1);
+        }
+        i++;
+    }
+
+    // if (isEmpty(&top1)) {
+        return str_temp;
+    // } else {
+        // return stack1[top1].str;
+    // }
+}
+
+void push(element item, element *s, int *t) {
+    // if (top >= MAX_STACK_SIZE - 1) {
+    //     stackFull();
+    // }
+    s[++(*t)] = item;
+}
+
+element pop(element *s, int *t) {
+    // if (top == -1) {
+    //     stackEmpty();
+    // }
+    return s[(*t)--];
+}
+
+element peek(element *s, int *t) {
+    // if (top == -1) {
+    //     stackEmpty();
+    // }
+    return s[*t];
+}
+
+int isEmpty(int *t) {
+    if (*t == -1) return 1;
+    else return 0;
+}
+```
