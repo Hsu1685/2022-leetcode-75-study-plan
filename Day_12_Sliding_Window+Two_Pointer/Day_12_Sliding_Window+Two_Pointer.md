@@ -98,3 +98,96 @@ int* findAnagrams(char * s, char * p, int* returnSize){
     - 字串複製: strcpy
     - 字串連接: strcat
     - 計算字串長度: strlen
+
+---
+## 424. Longest Repeating Character Replacement
+
+### 題目
+> You are given a string $s$ and an integer $k$. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most $k$ times.</br>
+Return *the length of the longest substring containing the same letter you can get after performing the above operations*.</br>
+
+```c
+int climbStairs(int n){
+
+}
+```
+
+>Constraints:
+>- 1 <= s.length <= $10^5$
+>- $s$ consists of only uppercase English letters.
+>- 0 <= k <= s.length
+
+### 過程
+- 想法就是利用滑動視窗(有視窗開頭和視窗長度2個變數)進行檢查，由大到小，從全字串長度n為視窗長度開始檢查會有1種可能，n-1有2種可能(視窗開頭是0或1)，一直到視窗長度為1
+- 其中字串改變後要最長連續的話，最好檢查時只有2種字母出現，而且出現次多字母數量是k，這樣把次多的字母全換成最多的字母就會得到最長的連續字串
+- 2022-07-23嘗試
+```c
+int characterReplacement(char * s, int k){
+    // int array[26] = {0};
+    int i = 0;
+    int j = 0;
+    int len = strlen(s);
+    // int counter = 1;
+    int break_flag = 0;
+
+    for (i=0; i<len; i++) {
+        for (j=0; j<(i+1); j++) {
+            if (checkLetter(s, j, len - i, k) == 1) {
+                break_flag = 1;
+                break;
+            }
+        }
+        if (break_flag == 1) {
+            break;
+        }
+    }
+
+//     for (i=len; i>0; i--) {
+//         for (j=0; j<; j++) {
+
+//         }
+//     }
+
+//     for (i=0; i<j; i++) {
+//         if (checkLetter(s, i, j, k) == 1) {
+//             break;
+//         }
+//         j--;
+//     }
+
+    // for (int i=0; i<4; i++) {
+    //     array[s[i] - 'A'] += 1;
+    // }
+
+    // return (len - i);
+    return (i);
+    // return (j);
+}
+
+int checkLetter(char * s, int start, int len, int input_k) {
+    int char_array[26] = {0};
+    int max = 0;
+    int sub_max = 0;
+    int counter = 0;
+
+    for (int i=start; i<len; i++) {
+        char_array[s[i] - 'A'] += 1;
+    }
+
+    for (int i=0; i<26; i++) {
+        if (char_array[i] != 0) {
+            counter++;
+        }
+        if (char_array[i] >= max) {
+            sub_max = max;
+            max = char_array[i];
+        }
+    }
+
+    if ((counter == 2) && (sub_max == input_k)) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+```
