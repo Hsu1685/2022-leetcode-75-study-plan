@@ -132,6 +132,11 @@ char * getHint(char * secret, char * guess){
     - 例如secret(1877)和guess(7081)對7來說還是只有猜中1個(計算少的那邊guess只有1個7)，全部是3B
 - 把0-9的數量取secret和guess少的全部加起來就是[總共猜對的數字]
 - 再來一對一比對是否有猜中A(位置及數字都對?)，最後計算B = [總共猜對的數字] - A的數量
+- C中將整數轉為字串的方法
+    - [How to convert an int to string in C?](https://stackoverflow.com/questions/8257714/how-to-convert-an-int-to-string-in-c)
+    - [如何在 C 語言中把整數轉換成字串](https://www.delftstack.com/zh-tw/howto/c/how-to-convert-an-integer-to-a-string-in-c/)
+    - sprintf()
+    - itoa()
 ```c
 char output[50];
 
