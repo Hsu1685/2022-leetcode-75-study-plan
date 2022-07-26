@@ -119,75 +119,128 @@ int climbStairs(int n){
 
 ### 過程
 - 想法就是利用滑動視窗(有視窗開頭和視窗長度2個變數)進行檢查，由大到小，從全字串長度n為視窗長度開始檢查會有1種可能，n-1有2種可能(視窗開頭是0或1)，一直到視窗長度為1
-- 其中字串改變後要最長連續的話，最好檢查時只有2種字母出現，而且出現次多字母數量是k，這樣把次多的字母全換成最多的字母就會得到最長的連續字串
-- 2022-07-23嘗試
-```c
-int characterReplacement(char * s, int k){
-    // int array[26] = {0};
-    int i = 0;
-    int j = 0;
-    int len = strlen(s);
-    // int counter = 1;
-    int break_flag = 0;
+    - 其中字串改變後要最長連續的話，~~最好檢查時只有2種字母出現，而且出現次多字母數量是k，這樣把次多的字母全換成最多的字母就會得到最長的連續字串~~，字串出現最多次數的字母數量只要是(字串長度(n) - 可變換次數(k))，就可以達到最長連續字串
+    - 這種檢查方式在字串很大時會超過時間 (Time Limit Exceeded)，因為有很多組合是不需要計算的，而且花費很多時間在計算字串的字母數量
+    ```c
+    int characterReplacement(char * s, int k){
+        int i = 0;
+        int j = 0;
+        int len = strlen(s);
+        int break_flag = 0;
 
-    for (i=0; i<len; i++) {
-        for (j=0; j<(i+1); j++) {
-            if (checkLetter(s, j, len - i, k) == 1) {
-                break_flag = 1;
+        for (i=0; i<len; i++) {
+            for (j=0; j<(i+1); j++) {
+                if (checkLetter(s, j, len - i, k) == 1) {
+                    break_flag = 1;
+                    break;
+                }
+            }
+            if (break_flag == 1) {
                 break;
             }
         }
-        if (break_flag == 1) {
-            break;
+
+        return (len - i);
+    }
+
+    int checkLetter(char * s, int start, int len, int input_k) {
+        int char_array[26] = {0};
+        int max_num = 0;
+        int ret = 0;
+
+        for (int i=start; i<(start+len); i++) {
+            char_array[s[i] - 'A'] += 1;
         }
-    }
 
-//     for (i=len; i>0; i--) {
-//         for (j=0; j<; j++) {
-
-//         }
-//     }
-
-//     for (i=0; i<j; i++) {
-//         if (checkLetter(s, i, j, k) == 1) {
-//             break;
-//         }
-//         j--;
-//     }
-
-    // for (int i=0; i<4; i++) {
-    //     array[s[i] - 'A'] += 1;
-    // }
-
-    // return (len - i);
-    return (i);
-    // return (j);
-}
-
-int checkLetter(char * s, int start, int len, int input_k) {
-    int char_array[26] = {0};
-    int max = 0;
-    int sub_max = 0;
-    int counter = 0;
-
-    for (int i=start; i<len; i++) {
-        char_array[s[i] - 'A'] += 1;
-    }
-
-    for (int i=0; i<26; i++) {
-        if (char_array[i] != 0) {
-            counter++;
+        for (int i=0; i<26; i++) {
+            if (char_array[i] >= max_num) {
+                max_num = char_array[i];
+            }
         }
-        if (char_array[i] >= max) {
-            sub_max = max;
-            max = char_array[i];
-        }
-    }
 
-    if ((counter == 2) && (sub_max == input_k)) {
-        return 1;
-    } else {
-        return 0;
+        if (max_num == len) {
+            return 1;
+        }
+
+        for (int i=input_k; i>=0; i--) {
+            if ((max_num + i) == len) {
+                ret = 1;
+                break;
+            }
+        }
+
+        return ret;
     }
-}
-```
+    ```
+- 參考網路上的做法
+    - 窗口只會變大或移動，不會縮小，窗口大小就是最終結果 (MAX_COUNTER只跟著右邊界更新)
+        - [【Leetcode】python – [424] Longest Repeating Character Replacement 個人解法筆記 #重要題型](https://www.wongwonggoods.com/python/python_leetcode/leetcode-python-424/)
+        - [LeetCode——424. 替換後的最長重複字元(Longest Repeating Character Replacement)——分析及程式碼（Java）](https://tw.java366.com/blog/detail/a909a8f90180e088cf4cff0c8a3ebbab)
+        - [Leetcode每日一题：424.longest-repeating-character-replacement(替换后的最长重复字符)](https://blog.51cto.com/luweir/4861393)
+        ```c
+        #define MAX(a,b) (((a)>(b))?(a):(b))
+
+        int characterReplacement(char * s, int k){
+            int i = 0;
+            int maxCnt = 0, start = 0, len = strlen(s);
+            int char_array[26] = {0};
+
+            for (i = 0; i < len; ++i) {
+                char_array[s[i] - 'A'] += 1;
+                maxCnt = MAX(maxCnt, char_array[s[i] - 'A']);
+                if (i - start + 1 - maxCnt > k) {
+                    --char_array[s[start] - 'A'];
+                    ++start;
+                }
+            }
+            return i - start;
+        }
+        ```
+    - 窗口左邊界移動至符合題意為止，可能縮小 (MAX_COUNTER跟著右邊界、左邊界更新)
+        - [【LeetCode】424. 替换后的最长重复字符 Longest Repeating Character Replacement（Python）](https://blog.csdn.net/fuxuemingzhu/article/details/79527303)
+        ```c
+        #define MAX(a,b) (((a)>(b))?(a):(b))
+
+        int characterReplacement(char * s, int k){
+            int i = 0;
+            int res = 0, maxCnt = 0, start = 0, len = strlen(s);
+            int char_array[26] = {0};
+
+            for (i = 0; i < len; ++i) {
+                char_array[s[i] - 'A'] += 1;
+                maxCnt = MAX(maxCnt, char_array[s[i] - 'A']);
+                while (i - start + 1 - maxCnt > k) {
+                    --char_array[s[start] - 'A'];
+                    maxCnt = MAX(maxCnt, char_array[s[start] - 'A']);
+                    ++start;
+                }
+                res = MAX(res, i - start + 1);
+            }
+            return res;
+        }
+        ```
+    - 窗口左邊界移動至符合題意為止，窗口可能縮小 (MAX_COUNTER只跟著右邊界更新)
+        - [[LeetCode] Longest Repeating Character Replacement 最长重复字符置换](https://www.cnblogs.com/grandyang/p/5999050.html)
+        ```c
+        #define MAX(a,b) (((a)>(b))?(a):(b))
+
+        int characterReplacement(char * s, int k){
+            int i = 0;
+            int res = 0, maxCnt = 0, start = 0, len = strlen(s);
+            int char_array[26] = {0};
+
+            for (i = 0; i < len; ++i) {
+                char_array[s[i] - 'A'] += 1;
+                maxCnt = MAX(maxCnt, char_array[s[i] - 'A']);
+                while (i - start + 1 - maxCnt > k) {
+                    --char_array[s[start] - 'A'];
+                    ++start;
+                }
+                res = MAX(res, i - start + 1);
+            }
+            return res;
+        }
+        ```
+    - 影片
+        - [Longest Repeating Character Replacement - Leetcode 424 - Python - YouTube](https://www.youtube.com/watch?v=gqXU1UyA8pk)
+
