@@ -127,7 +127,7 @@ int longestPalindrome(char * s){
         - 只有1個奇數次，則a自身是迴文，bbb也是迴文
         - 出現多個奇數次，則每次會增加[出現次數-1]的迴文長度
         - [aaabbb]，最長就是baaab或abbba，長度都是5(第1個奇數->3 + 第2個奇數->3 - 1)
-        - [aaabbbbb]，最常就是abbbbba，長度是7(第1個奇數->3 + 第2個奇數->5 - 1)
+        - [aaabbbbb]，最長就是abbbbba，長度是7(第1個奇數->3 + 第2個奇數->5 - 1)
     ```c
     int longestPalindrome(char * s){
         int char_array[128] = {0};
