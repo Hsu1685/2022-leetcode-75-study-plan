@@ -140,9 +140,10 @@ int longestPalindrome(char * s){
     int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes){
         dynArr = (int *)calloc(HEIGHT, sizeof(int));        /* 動態記憶體配置 */
 
-        dynArr2D = (int **)malloc(sizeof(int *) * ROW);     /* 動態記憶體配置 */
+        dynArr2D = (int **)malloc(sizeof(int *) * ROW);         /* 動態記憶體配置 */
         for (int i=0; i<ROW; i++) {
-            dynArr[i] = (int *)malloc(sizeof(int) * COL);   /* 動態記憶體配置 */
+            dynArr2D[i] = (int *)malloc(sizeof(int) * COL);     /* 動態記憶體配置 */
+            memset(dynArr2D[i], -1, COL * sizeof(int));         /* 記憶體區塊設定 -> 用來初始化 */
         }
 
         *returnColumnSizes = dynArr;  // 要回應一個陣列表示每一層有多少節點
