@@ -1,6 +1,9 @@
 # 2022-leetcode-75-study-plan
 Complete the LeetCode 75 study plan using C programming language
 
+## About LeetCode 75
+- [75 Leetcode Must-know questions](https://medium.com/@miniChang8/75-leetcode-must-know-questions-953b3749c7e9)
+- [关于 leetcode blind 75](https://raymondjiang.net/2022/02/18/about-leetcode-blind-75/)
 
 # Level 1 進度
 | Day | Title | Complete | Date |
@@ -19,4 +22,4 @@ Complete the LeetCode 75 study plan using C programming language
 | 12 | [Sliding Window/Two Pointer](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_12_Sliding_Window+Two_Pointer/Day_12_Sliding_Window+Two_Pointer.md) | 100% | 2022-07-26 |
 | 13 | [Hashmap](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_13_Hashmap/Day_13_Hashmap.md) | 100% | 2022-07-22 |
 | 14 | [Stack](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_14_Stack/Day_14_Stack.md) | 100% | 2022-07-21 |
-| 15 | [Heap](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_15_Heap/Day_15_Heap.md) | 0% | |
+| 15 | [Heap](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_15_Heap/Day_15_Heap.md) | 100% | 2022-07-29 |
