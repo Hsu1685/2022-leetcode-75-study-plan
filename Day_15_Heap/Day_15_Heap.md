@@ -519,6 +519,8 @@ int lexicographicOrder(char *a, char *b) {
 
 ```
 - 延伸內容
+    - [Priority queue From Wikipedia](https://en.wikipedia.org/wiki/Priority_queue)
     - [Day-11 priority queue](https://ithelp.ithome.com.tw/articles/10269601)
     - [Priority Queue：Intro(簡介)](http://alrightchiu.github.io/SecondRound/priority-queueintrojian-jie.html)
     - [Priority Queue：Binary Heap](http://alrightchiu.github.io/SecondRound/priority-queuebinary-heap.html)
+    - [std::priority_queue - cplusplus.com](https://cplusplus.com/reference/queue/priority_queue/)
