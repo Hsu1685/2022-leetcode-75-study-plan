@@ -275,7 +275,7 @@ int isEmpty(int *top) {
 }
 ```
 
-- 參考他人的作法後，發現應該放入stack的不是char，應該把 '[' 之前的數字解析為int後放入stack，把 '[' 和 ']' 中間的字串放入stack，為此stack要修改為一個stack是元素是int，一個stack元素是字元陣列
+- 參考他人的作法後，發現應該放入stack的不是char，應該把 '[' 之前的數字解析為int後放入stack，把 '[' 和 ']' 中間的字串放入stack，為此stack要修改為一個stack的元素是int，一個stack的元素是字元陣列
     - [[LeetCode] 394. Decode String 解码字符串](https://www.cnblogs.com/grandyang/p/5849037.html)
 ```c
 #include <string.h>
