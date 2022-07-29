@@ -271,7 +271,36 @@ char ** topKFrequent(char ** words, int wordsSize, int k, int* returnSize){
 >- k is in the range [1, The number of unique words[i]]
 
 ### Process
-- 2022-07-28嘗試
+- Lexicographical Order
+    - [Lexicographic order From Wikipedia](https://en.wikipedia.org/wiki/Lexicographic_order)
+```cpp
+/* 回傳 1: 字母依序比較其中a[i] > b[i]，或是依序比較後每個字母相同但是a比較長 */
+/* 回傳 0: 依序比較每個字母都相同，而且a b的字串長度相同 */
+/* 回傳 -1: 字母依序比較其中a[i] < b[i]，或是依序比較後每個字母相同但是a比較短 */
+int lexicographicOrder(char *a, char *b) {
+    int i = 0;
+
+    while ((a[i] != '\0') && (b[i] != '\0')) {
+        if (a[i] > b[i]) {
+            return 1;
+        } else if (a[i] < b[i]){
+            return -1;
+        }
+        i++;
+    }
+
+    if ((a[i] == '\0') && (b[i] == '\0')) {
+        return 0;
+    } else if (a[i] == '\0') {
+        return -1;
+    } else {
+        return 1;
+    }
+}
+```
+- 2022-07-28嘗試，
+    - 這次嘗試的問題在於無法判斷同樣高頻的字串誰要排在前面
+    - 改進方向：可以將找最大的判斷改成頻率相同時判斷字典順序
 ```cpp
 char ** topKFrequent(char ** words, int wordsSize, int k, int* returnSize){
     int counter;
@@ -313,7 +342,7 @@ char ** topKFrequent(char ** words, int wordsSize, int k, int* returnSize){
     return dynArr2D;
 }
 
-int findMax(int *lst, int num) {
+int findMax(int *lst, int num) {  // 可以將找最大的判斷改成頻率相同時判斷字典順序
     int max = 0;
     int max_i = 0;
     for (int i=0; i<num; i++) {
@@ -325,3 +354,171 @@ int findMax(int *lst, int num) {
     return max_i;
 }
 ```
+
+- 參考網路上的做法
+    - [[LeetCode] Top K Frequent Words 前K个高频词](https://www.cnblogs.com/grandyang/p/7689927.html)
+- 2022-07-29上傳
+```cpp
+#define MAXSIZE 100
+#define MAX_STR_SIZE 20
+#define HEAP_FULL(n) (n == MAXSIZE - 1)
+
+typedef struct {
+    char data[MAX_STR_SIZE];
+    int freq;
+    /* other fields */
+} element;
+
+typedef struct {
+    element r[MAXSIZE+1];
+    int length;
+} Sqlist;
+
+element pop(Sqlist *);
+void push(Sqlist *, element);
+void heapAdjust(Sqlist *, int, int);
+int heapOrder(element *, element *);
+int lexicographicOrder(char *, char *);
+
+char ** topKFrequent(char ** words, int wordsSize, int k, int* returnSize){
+    int counter;
+    Sqlist lst1;
+    lst1.length = 0;
+
+    int *dynArr = (int *)calloc(wordsSize, sizeof(int));  /* 動態記憶體配置初始化為0 */
+    char **dynArr2D = (char **)malloc(sizeof(char *) * k);  /* 動態記憶體配置 */
+    for (int i=0; i<k; i++) {
+        dynArr2D[i] = (char *)malloc(sizeof(char) * MAX_STR_SIZE);  /* 動態記憶體配置 */
+        memset(dynArr2D[i], '\0', 1 * sizeof(char));  /* 記憶體區塊設定 -> 用來初始化為空字串 */
+    }
+
+    /* 找出字串重複的次數並記錄 */
+    for (int i=0; i<wordsSize; i++) {
+        if (dynArr[i] != -1) {
+            counter = 1;
+        } else {
+            continue;
+        }
+
+        for (int j=i+1; j<wordsSize; j++) {
+            if (strcmp(words[i], words[j]) == 0) {
+                counter++;
+                dynArr[j] = -1;
+            }
+        }
+        dynArr[i] = counter;
+    }
+
+    /* 將字串和出現頻率一起丟到Heap裡，頻率相同的元素依字典順序排序 */
+    for (int i=0; i<wordsSize; i++) {
+        if (dynArr[i] > 0) {
+            element item;
+            strcpy(item.data, words[i]);
+            item.freq = dynArr[i];
+            push(&lst1, item);
+        }
+    }
+
+    /* 取出題目要求的前幾名高頻字串 */
+    for (int i=0; i<k; i++) {
+        strcpy(dynArr2D[i], pop(&lst1).data);
+    }
+    *returnSize = k;
+    return dynArr2D;
+}
+
+/* 元素內容交換 */
+void swap(Sqlist *L, int i, int j) {
+    element temp = L->r[i];
+    L->r[i] = L->r[j];
+    L->r[j] = temp;
+}
+
+/* delete element with the highest key from the heap */
+element pop(Sqlist *L) {
+    element item = L->r[1];
+    swap(L, 1, L->length);
+    heapAdjust(L, 1, --(L->length));
+    return item;
+}
+
+/* Heap調整方式 */
+void heapAdjust(Sqlist *L, int s, int m) {
+    element temp;
+    int j;
+    temp = L->r[s];
+    for (int j=2*s; j<=m; j*=2) {
+        if ((j < m) && (heapOrder(&(L->r[j]), &(L->r[j+1])) < 0)) {
+            j++;
+        }
+        if (heapOrder(&temp, &(L->r[j])) >= 0) {
+            break;
+        }
+        L->r[s] = L->r[j];
+        s = j;
+    }
+    L->r[s] = temp;
+}
+
+/* insert item into a max heap of current size *n */
+void push(Sqlist *L, element item) {
+    int i;
+    if (HEAP_FULL(L->length)) {
+        return;
+    }
+    i = ++(L->length);
+    while ((i != 1) && (heapOrder(&item, &(L->r[i / 2])) > 0)) {
+        L->r[i] = L->r[i / 2];
+        i /= 2;
+    }
+    L->r[i] = item;
+}
+
+/* 回傳 1: a > b，a的freq 大於 b的freq或是在 a的freq 等於 b的freq情況下，a的字典順序較靠前*/
+/* 回傳 0: a = b */
+/* 回傳 -1: a = b */
+int heapOrder(element *a, element *b) {
+    if (a->freq > b->freq) {
+        return 1;
+    } else if (a->freq < b->freq) {
+        return -1;
+    } else {
+        if (lexicographicOrder(a->data, b->data) < 0) {
+            return 1;
+        } else if (lexicographicOrder(a->data, b->data) > 0) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+/* 回傳 1: 字母依序比較其中a[i] > b[i]，或是依序比較後每個字母相同但是a比較長 */
+/* 回傳 0: 依序比較每個字母都相同，而且a b的字串長度相同 */
+/* 回傳 -1: 字母依序比較其中a[i] < b[i]，或是依序比較後每個字母相同但是a比較短 */
+int lexicographicOrder(char *a, char *b) {
+    int i = 0;
+
+    while ((a[i] != '\0') && (b[i] != '\0')) {
+        if (a[i] > b[i]) {
+            return 1;
+        } else if (a[i] < b[i]){
+            return -1;
+        }
+        i++;
+    }
+
+    if ((a[i] == '\0') && (b[i] == '\0')) {
+        return 0;
+    } else if (a[i] == '\0') {
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+```
+- 延伸內容
+    - [Day-11 priority queue](https://ithelp.ithome.com.tw/articles/10269601)
+    - [Priority Queue：Intro(簡介)](http://alrightchiu.github.io/SecondRound/priority-queueintrojian-jie.html)
+    - [Priority Queue：Binary Heap](http://alrightchiu.github.io/SecondRound/priority-queuebinary-heap.html)
