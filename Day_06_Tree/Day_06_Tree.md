@@ -167,7 +167,7 @@ int longestPalindrome(char * s){
 
 
 
-- 複習queue
+- C語言實現queue
     ```c
     #include <stdio.h>
     #include <stdlib.h>
