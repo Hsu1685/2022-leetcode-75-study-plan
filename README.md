@@ -6,6 +6,10 @@ Complete the LeetCode 75 study plan using C programming language
 - [关于 leetcode blind 75](https://raymondjiang.net/2022/02/18/about-leetcode-blind-75/)
 
 # Level 1 進度
+| Easy | Medium | Hard |
+|---|---|---|
+| 20 | 10 | 0 |
+
 | Day | Title | Complete | Date |
 |:----:|:---------|:-----:|:--------:|
 | 01 | [Prefix Sum](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_01_Prefix_Sum/Day_01_Prefix_Sum.md) | 100% | 2022-07-07 |
@@ -23,3 +27,102 @@ Complete the LeetCode 75 study plan using C programming language
 | 13 | [Hashmap](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_13_Hashmap/Day_13_Hashmap.md) | 100% | 2022-07-22 |
 | 14 | [Stack](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_14_Stack/Day_14_Stack.md) | 100% | 2022-07-21 |
 | 15 | [Heap](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_15_Heap/Day_15_Heap.md) | 100% | 2022-07-29 |
+
+
+# Level 1 題目
+| Day | Title | Problem | Difficulty | Solution |
+|:---:|:---|---|:---:|:---:|
+| 1 | Prefix Sum | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | Easy | [2022-07-07](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_01_Prefix_Sum/Day_01_Prefix_Sum.md) |
+| 1 | Prefix Sum | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
+| 2 | String | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
+| 2 | String | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
+
+
+## note
+- Day 1 Prefix Sum
+    - [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array)
+        - Easy
+    - [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index)
+        - Easy
+- Day 2 String
+    - 205. Isomorphic Strings
+        - Easy
+    - 392. Is Subsequence
+        - Easy
+- Day 3 Linked List
+    - 21. Merge Two Sorted Lists
+        - Easy
+    - 206. Reverse Linked List
+        - Easy
+- Day 4 Linked List
+    - 876. Middle of the Linked List
+        - Easy
+    - 142. Linked List Cycle II
+        - Medium
+- Day 5 Greedy
+    - 121. Best Time to Buy and Sell Stock
+        - Easy
+    - 409. Longest Palindrome
+        - Easy
+- Day 6 Tree
+    - 589. N-ary Tree Preorder Traversal
+        - Easy
+    - 102. Binary Tree Level Order Traversal
+        - Medium
+- Day 7 Binary Search
+    - 704. Binary Search
+        - Easy
+    - 278. First Bad Version
+        - Easy
+- Day 8 Binary Search Tree
+    - 98. Validate Binary Search Tree
+        - Medium
+    - 235. Lowest Common Ancestor of a Binary Search Tree
+        - Easy
+- Day 9 Graph/BFS/DFS
+    - 733. Flood Fill
+        - Easy
+    - 200. Number of Islands
+        - Medium
+- Day 10 Dynamic Programming
+    - 509. Fibonacci Number
+        - Easy
+    - 70. Climbing Stairs
+        - Easy
+- Day 11 Dynamic Programming
+    - 746. Min Cost Climbing Stairs
+        - Easy
+    - 62. Unique Paths
+        - Medium
+- Day 12 Sliding Window/Two Pointer
+    - 438. Find All Anagrams in a String
+        - Medium
+    - 424. Longest Repeating Character Replacement
+        - Medium
+- Day 13 Hashmap
+    - 1. Two Sum
+        - Easy
+    - 299. Bulls and Cows
+        - Medium
+- Day 14 Stack
+    - 844. Backspace String Compare
+        - Easy
+    - 394. Decode String
+        - Medium
+- Day 15 Heap
+    - 1046. Last Stone Weight
+        - Easy
+    - 692. Top K Frequent Words
+        - Medium
+
+
+---
+# Level 2
+## note
+- Day 1 Implementation/Simulation
+    - [202. Happy Number](https://leetcode.com/problems/happy-number/)
+        - Easy
+    - [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
+        - Medium
+    - [1706. Where Will the Ball Fall](https://leetcode.com/problems/where-will-the-ball-fall/)
+        - Medium
