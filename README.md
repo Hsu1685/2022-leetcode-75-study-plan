@@ -5,7 +5,7 @@ Complete the LeetCode 75 study plan using C programming language
 - [75 Leetcode Must-know questions](https://medium.com/@miniChang8/75-leetcode-must-know-questions-953b3749c7e9)
 - [关于 leetcode blind 75](https://raymondjiang.net/2022/02/18/about-leetcode-blind-75/)
 
-# Level 1 進度
+# Level 1 總體進度
 | Easy | Medium | Hard |
 |---|---|---|
 | 20 | 10 | 0 |
@@ -32,11 +32,16 @@ Complete the LeetCode 75 study plan using C programming language
 # Level 1 題目
 | Day | Title | Problem | Difficulty | Solution |
 |:---:|:---|---|:---:|:---:|
-| 1 | Prefix Sum | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | Easy | [2022-07-07](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_01_Prefix_Sum/Day_01_Prefix_Sum.md) |
-| 1 | Prefix Sum | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
-| 2 | String | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
-| 2 | String | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | 2022-07-07 |
-
+| 1 | Prefix Sum | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | Easy | [2022-07-07](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_01_Prefix_Sum/Day_01_Prefix_Sum.md#1480-running-sum-of-1d-array) |
+| 1 | Prefix Sum | [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | [2022-07-07](https://github.com/Hsu1685/2022-leetcode-75-study-plan/blob/main/Day_01_Prefix_Sum/Day_01_Prefix_Sum.md#724-find-pivot-index) |
+| 2 | String | [205. Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/) | Easy | 2022-07-07 |
+| 2 | String | [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) | Easy | 2022-07-07 |
+| 3 | Linked List | [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | Easy | 2022-07-07 |
+| 3 | Linked List | [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) | Easy | 2022-07-07 |
+| 4 | Linked List | [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/) | Easy | 2022-07-07 |
+| 4 | Linked List | [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/) | Easy | 2022-07-07 |
+| 5 | Linked List |  | Easy | 2022-07-07 |
+| 5 | Linked List |  | Easy | 2022-07-07 |
 
 ## note
 - Day 1 Prefix Sum
@@ -45,19 +50,19 @@ Complete the LeetCode 75 study plan using C programming language
     - [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index)
         - Easy
 - Day 2 String
-    - 205. Isomorphic Strings
+    - [205. Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/)
         - Easy
-    - 392. Is Subsequence
+    - [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/)
         - Easy
 - Day 3 Linked List
-    - 21. Merge Two Sorted Lists
+    - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
         - Easy
-    - 206. Reverse Linked List
+    - [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
         - Easy
 - Day 4 Linked List
-    - 876. Middle of the Linked List
+    - [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
         - Easy
-    - 142. Linked List Cycle II
+    - [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)
         - Medium
 - Day 5 Greedy
     - 121. Best Time to Buy and Sell Stock
