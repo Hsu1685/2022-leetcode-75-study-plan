@@ -3,7 +3,7 @@
 ## 844. Backspace String Compare
 
 ### 題目
->Given two strings $s$ and $t$, return $true$ *if they are equal when both are typed into empty text editors*. $'#'$ means a backspace character.</br>
+>Given two strings $s$ and $t$, return $true$ *if they are equal when both are typed into empty text editors*. $'\\#'$ means a backspace character.</br>
 Note that after backspacing an empty text, the text will continue empty.</br>
 
 
