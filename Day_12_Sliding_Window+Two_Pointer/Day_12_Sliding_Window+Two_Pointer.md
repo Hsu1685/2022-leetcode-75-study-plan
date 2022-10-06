@@ -107,7 +107,7 @@ int* findAnagrams(char * s, char * p, int* returnSize){
 Return *the length of the longest substring containing the same letter you can get after performing the above operations*.</br>
 
 ```c
-int climbStairs(int n){
+int characterReplacement(char * s, int k){
 
 }
 ```
